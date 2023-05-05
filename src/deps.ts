@@ -1,6 +1,10 @@
-export { pascalCase } from "https://deno.land/x/case@v2.1.0/mod.ts";
-export { emptyDir, ensureDir } from "https://deno.land/std@0.67.0/fs/mod.ts";
+// When upgrading std versions, ensure to check this list's `cli_to_std` section: https://raw.githubusercontent.com/denoland/dotland/main/versions.json
+// Whatever minimum deno version we are recommending to users, we should use that version to determine what version of std
+// we should use in our libraries.
+
+// Current recommended deno version: 1.31.1 (version of deno used by Run on Slack)
+// Recommended stdlib version to use with above deno version: 0.178.0
 export {
   createHttpError,
   HttpError,
-} from "https://deno.land/std@0.182.0/http/http_errors.ts";
+} from "https://deno.land/std@0.178.0/http/http_errors.ts";

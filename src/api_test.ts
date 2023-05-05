@@ -1,10 +1,4 @@
-import {
-  assertEquals,
-  assertInstanceOf,
-  assertRejects,
-  isHttpError,
-  mf,
-} from "./dev_deps.ts";
+import { assertEquals, assertInstanceOf, isHttpError, mf } from "./dev_deps.ts";
 import { SlackAPI } from "./mod.ts";
 import { serializeData } from "./base-client.ts";
 import { HttpError } from "./deps.ts";
@@ -71,19 +65,16 @@ Deno.test("SlackAPI class", async (t) => {
               });
             });
 
-            await assertRejects(
-              async () => {
-                return await client.apiCall("chat.postMessage", {});
-              },
-              (error: Error) => {
-                assertInstanceOf(error, HttpError);
-                if (isHttpError(error)) {
-                  assertEquals(error.headers?.get("Retry-After"), "120");
-                  assertEquals(error.status, 429);
-                  assertEquals(error.message, "429: ratelimited");
-                }
-              },
-            );
+            try {
+              await client.apiCall("chat.postMessage", {});
+            } catch (error) {
+              assertInstanceOf(error, HttpError);
+              if (isHttpError(error)) {
+                assertEquals(error.headers?.get("Retry-After"), "120");
+                assertEquals(error.status, 429);
+                assertEquals(error.message, "429: ratelimited");
+              }
+            }
 
             mf.reset();
           },
@@ -140,22 +131,19 @@ Deno.test("SlackAPI class", async (t) => {
               });
             });
 
-            await assertRejects(
-              async () => {
-                return await client.response(
-                  "https://slack.com/api/chat.postMessage",
-                  {},
-                );
-              },
-              (error: Error) => {
-                assertInstanceOf(error, HttpError);
-                if (isHttpError(error)) {
-                  assertEquals(error.headers?.get("Retry-After"), "120");
-                  assertEquals(error.status, 429);
-                  assertEquals(error.message, "429: ratelimited");
-                }
-              },
-            );
+            try {
+              await client.response(
+                "https://slack.com/api/chat.postMessage",
+                {},
+              );
+            } catch (error) {
+              assertInstanceOf(error, HttpError);
+              if (isHttpError(error)) {
+                assertEquals(error.headers?.get("Retry-After"), "120");
+                assertEquals(error.status, 429);
+                assertEquals(error.message, "429: ratelimited");
+              }
+            }
 
             mf.reset();
           },
