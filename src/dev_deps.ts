@@ -1,5 +1,5 @@
 // When upgrading std versions, ensure to check this list's `cli_to_std` section: https://raw.githubusercontent.com/denoland/dotland/main/versions.json
-// Whatever minimum deno version we are recommending to users, we should use that version to determine what version of std
+// Whatever minimum deno version we are recommending to users should be used to index into the above list to determine what version of std
 // we should use in our libraries.
 
 // Current recommended deno version: 1.31.1 (version of deno used by Run on Slack)
