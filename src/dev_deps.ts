@@ -5,6 +5,7 @@
 // Current recommended deno version: 1.31.1 (version of deno used by Run on Slack)
 // Recommended stdlib version to use with above deno version: 0.178.0
 export {
+  assert,
   assertEquals,
   assertExists,
   assertInstanceOf,

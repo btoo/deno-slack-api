@@ -1,4 +1,10 @@
-import { assertEquals, assertInstanceOf, isHttpError, mf } from "./dev_deps.ts";
+import {
+  assert,
+  assertEquals,
+  assertInstanceOf,
+  isHttpError,
+  mf,
+} from "./dev_deps.ts";
 import { SlackAPI } from "./mod.ts";
 import { serializeData } from "./base-client.ts";
 import { HttpError } from "./deps.ts";
@@ -67,6 +73,7 @@ Deno.test("SlackAPI class", async (t) => {
 
             try {
               await client.apiCall("chat.postMessage", {});
+              assert(false, "An error should have been thrown, but was not.");
             } catch (error) {
               assertInstanceOf(error, HttpError);
               if (isHttpError(error)) {
@@ -136,6 +143,7 @@ Deno.test("SlackAPI class", async (t) => {
                 "https://slack.com/api/chat.postMessage",
                 {},
               );
+              assert(false, "An error should have been thrown, but was not.");
             } catch (error) {
               assertInstanceOf(error, HttpError);
               if (isHttpError(error)) {
