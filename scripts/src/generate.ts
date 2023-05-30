@@ -1,5 +1,4 @@
-import { pascalCase } from "./deps.ts";
-import { emptyDir, ensureDir } from "./deps.ts";
+import { emptyDir, ensureDir, pascalCase } from "./deps.ts";
 import { APIMethodNode } from "./api-method-node.ts";
 import { getPublicAPIMethods } from "./public-api-methods.ts";
 

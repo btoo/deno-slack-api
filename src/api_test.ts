@@ -76,6 +76,9 @@ Deno.test("SlackAPI class", async (t) => {
               assert(false, "An error should have been thrown, but was not.");
             } catch (error) {
               assertInstanceOf(error, HttpError);
+              // The conditional below will always return true (otherwise the assertion in the line previous would fail)
+              // Its purpose is for narrowing: the `error` is narrowed inside the conditional block to an HTTP error,
+              // which allows for referencing HTTP-error-specific properties like headers and status codes.
               if (isHttpError(error)) {
                 assertEquals(error.headers?.get("Retry-After"), "120");
                 assertEquals(error.status, 429);
